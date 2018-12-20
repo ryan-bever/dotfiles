@@ -1,0 +1,61 @@
+[push]
+    default = simple
+[diff]
+    tool = diffmerge
+[merge]
+    tool = diffmerge
+    keepBackup = false
+[difftool]
+    prompt = false
+[core]
+    excludesfile = ~/.gitignore_global
+    editor = vim
+[alias]
+    #one-line log
+    ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=short
+    #l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=short -15
+    l = !"git --no-pager log --pretty=format:'%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [%an]' --decorate --date=short -15"
+    #last commit
+    last = !"git --no-pager log -1 HEAD"
+    #log graphs
+    lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(dim black)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(black)%s%C(reset) %C(dim black)- %an%C(reset)' --all
+    lg = !"git lg1"
+
+    bblame = log -p -M --follow --stat -- 
+
+    a = add
+    ap = add -p
+    c = commit --verbose
+    ca = commit -a --verbose
+    cm = commit -m
+    cam = commit -a -m
+    m = commit --amend --verbose
+
+    d = diff
+    ds = diff --stat
+    dc = diff --cached
+
+    s = status
+    ss = status -s
+    co = checkout
+    cob = checkout -b
+    # list branches sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+    #use git unstage filename
+    unstage = "reset HEAD --"
+    visual = !gitk &
+
+    # list aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+[credential]
+    helper = store
+[mergetool "diffmerge"]
+    cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge  --merge --result=$MERGED $LOCAL $BASE $REMOTE
+[difftool "diffmerge"]
+    cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge $LOCAL $REMOTE
+
+# Source in local gitconfig i.e user settings
+[include]
+    path = ~/.gitconfig.local

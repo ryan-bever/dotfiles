@@ -1,0 +1,10 @@
+# inputrc for programs that use GNU readline
+# NOTE: zsh doesn't use readline and instead uses it's own (ZLE) line editor
+# Thus this doesn't work for zsh and you can use `bindkey -v` or the vi-mode plugin
+#
+# Set vi mode - this will work for scala repl, python repl, sbt, etc
+# See: http://vim.wikia.com/wiki/Use_vi_shortcuts_in_terminal
+set editing-mode vi
+
+# Setting the below causes sbt and scala to start in command mode - not sure why, but commenting it out
+# set keymap vi-command

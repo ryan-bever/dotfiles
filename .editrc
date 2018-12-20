@@ -1,0 +1,3 @@
+# mysql uses editline instead of readline (.inputrc)
+# See: https://superuser.com/questions/842923/setting-vim-key-bindings-for-the-mysql-client
+bind -v 

@@ -1,0 +1,6 @@
+# Add path to my bin 
+export PATH="${HOME}/bin:${HOME}/git/:${HOME}/bin:$PATH"
+
+if [ -f ~/.pathrc.local ]; then
+    source ~/.pathrc.local
+fi
