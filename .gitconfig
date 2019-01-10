@@ -35,6 +35,7 @@
     d = diff
     ds = diff --stat
     dc = diff --cached
+    dom = diff origin/master
 
     s = status
     ss = status -s

@@ -86,3 +86,6 @@ brew cask install postman
 brew cask install virtualbox
 brew cask install minikube
 brew install kubectl
+
+# i2cssh
+gem install i2cssh --user-install
