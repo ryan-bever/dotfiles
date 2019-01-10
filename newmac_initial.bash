@@ -68,6 +68,8 @@ jenv rehash
 # utils
 brew install watch
 brew install telnet
+brew install jq
+brew install sshrc
 
 brew install scala 
 brew install sbt

@@ -1,0 +1,23 @@
+# This is a stripped down bashrc that should be able to run on any remote ssh system
+# See: https://github.com/Russell91/sshrc
+
+
+# Source in my local .sshrc if it exits
+if [ -f ~/.sshrc.local ]; then
+    source ~/.sshrc.local
+fi
+
+
+# Aliases
+alias ls='ls -FGh'              # classify files in colour
+alias ll='ls -l'                # long list
+alias la='ls -A'                # all but . and ..
+alias lla='ls -lA'              # all but . and ..
+alias llah='ls -lAh'            # all but . and ..
+
+# Tell vim to use the .vimrc copied from ~/.sshrc.d/.vimrc to a temp folder 
+# on the remote host
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+
+
+set -o vi
