@@ -294,8 +294,12 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>/Applications</string>
+	<string>~/tmp</string>
+	<key>NSNavLastUserSetHideExtensionButtonState</key>
+	<false/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{712, 448}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
@@ -334,11 +338,13 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>5210 378 620 392 4240 -390 2560 1417 </string>
+	<string>562 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>4940 273 918 512 4240 -390 2560 1417 </string>
+	<string>2380 388 796 486 1680 -390 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>5520 -390 1278 1417 4240 -390 2560 1417 </string>
+	<string>3241 178 585 452 1680 -390 2560 1417 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>4562 -186 585 452 4240 -390 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -997,7 +1003,7 @@
 			<key>Shortcut</key>
 			<string></string>
 			<key>Silence Bell</key>
-			<false/>
+			<true/>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -1267,6 +1273,8 @@
 			<integer>80</integer>
 			<key>Command</key>
 			<string></string>
+			<key>Cursor Boost</key>
+			<real>0.0</real>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1638,6 +1646,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Minimum Contrast</key>
+			<real>0.41956676136363635</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -1688,6 +1698,8 @@
 			<string></string>
 			<key>Silence Bell</key>
 			<false/>
+			<key>Smart Cursor Color</key>
+			<false/>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -1702,6 +1714,8 @@
 			<true/>
 			<key>Use Bright Bold</key>
 			<true/>
+			<key>Use Cursor Guide</key>
+			<false/>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
@@ -1716,6 +1730,8 @@
 			<string>/Users/rbever</string>
 		</dict>
 	</array>
+	<key>NoSyncHaveRequestedFullDiskAccess</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
@@ -1726,6 +1742,8 @@
 	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
+	<key>NoSyncSaveDocumentAsPathSet_saveDocumentAs:</key>
+	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>560585225.940328</real>
 	<key>OnlyWhenMoreTabs</key>
@@ -1780,7 +1798,7 @@
 	<key>PrefsCustomFolder</key>
 	<string>~/.myiterm2</string>
 	<key>PromptOnQuit</key>
-	<false/>
+	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -1790,7 +1808,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-10-29T21:11:48Z</date>
+	<date>2019-01-09T01:53:39Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1800,11 +1818,11 @@
 	<key>Window Arrangements</key>
 	<dict/>
 	<key>WordCharacters</key>
-	<string>/-+\~_.</string>
+	<string>plugin</string>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.2.3</string>
+	<string>3.2.6</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
