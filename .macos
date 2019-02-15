@@ -109,6 +109,9 @@ defaults write com.apple.dock mru-spaces -bool false
 # the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array
 
+# Set "Show recent applications in Dock" to off
+defaults write com.apple.dock show-recents -int 0
+
 ###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################

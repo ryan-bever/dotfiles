@@ -48,6 +48,9 @@
     unstage = "reset HEAD --"
     visual = !gitk &
 
+    # rebase
+    squash = "rebase -i origin/master"
+
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
 [credential]
