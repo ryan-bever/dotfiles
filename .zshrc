@@ -6,7 +6,7 @@ if [ -f ~/.pathrc ]; then
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/rbever/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -110,14 +110,16 @@ COMPLETION_WAITING_DOTS="true"
 ######################################
 # pyenv settings
 ######################################
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 ######################################
 # jenv settings
 ######################################
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
 
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
