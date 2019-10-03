@@ -77,6 +77,7 @@ brew install sbt
 brew install autossh
 brew install mysql-client
 
+brew cask install pycharm
 brew cask install intellij-idea
 
 brew cask install hipchat
@@ -91,3 +92,4 @@ brew install kubectl
 
 # i2cssh
 gem install i2cssh --user-install
+
