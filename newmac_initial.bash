@@ -11,8 +11,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
 # Pin the version of git that doesn't clobber autocomplete
-brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/db579a4f633c3dfde12c5236b9ea0695dce6cc5e/Formula/git.rb --without-completions
-brew pin git
+# 10/3/19 - Temporarily don't install git from brew because it's slow as shit at work when using vcs plugin of powerlevel9k...
+# brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/db579a4f633c3dfde12c5236b9ea0695dce6cc5e/Formula/git.rb --without-completions
+# brew pin git
 
 
 # Set brew to not update on every call during this script
