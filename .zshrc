@@ -49,6 +49,9 @@ elif [ "$(uname)" = "Linux" ]; then
         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
         POWERLEVEL9K_DISABLE_RPROMPT=true
     fi
+
+    # There is a bug in terminator that doesn't set TERM properly
+    export TERM="xterm-256color"
 else
     # do nothing
 fi
