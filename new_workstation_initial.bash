@@ -51,6 +51,7 @@ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev li
 #
 sudo apt install -y silversearcher-ag
 sudo apt install -y jq
+sudo apt install -y gnome-tweak-tool
 
 
 
