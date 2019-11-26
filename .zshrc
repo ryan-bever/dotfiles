@@ -121,8 +121,8 @@ eval "$(pyenv virtualenv-init -)"
 ######################################
 # jenv settings
 ######################################
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
 
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
