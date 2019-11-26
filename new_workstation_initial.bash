@@ -83,3 +83,11 @@ sudo usermod -aG docker rbever
 #
 wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb
+
+
+# bin
+cd
+git clone https://bitbucket.ngage.netapp.com/scm/\~rbever/mac-bin.git bin
+cd bin
+pyenv virtualenv 3.7.4 bin
+pyenv local bin
