@@ -20,7 +20,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 ######################################
@@ -32,25 +32,28 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv time)
 # This if statement is to work-around some problem with using material theme in pycharm on Linux and Mac
 # This is probably not the best method, but it works for now.  
 
-if [ "$(uname)" = "Darwin" ]; then
-    # For Mac the only difference I have found in env is that TERM_PROGRAM is set to iTerm.app or Apple_Terminal
-    # for the two terminal programs that I use.  This variable is unset in pycharm - but it's safe to do this 
-    # even if we are not in pycharm
-    if [ -z "$TERM_PROGRAM" ]; then
-        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
-        POWERLEVEL9K_DISABLE_RPROMPT=true
+USING_MATERIAL_THEME="false"
+if [ "${USING_MATERIAL_THEME}" = "true" ]; then
+    if [ "$(uname)" = "Darwin" ]; then
+        # For Mac the only difference I have found in env is that TERM_PROGRAM is set to iTerm.app or Apple_Terminal
+        # for the two terminal programs that I use.  This variable is unset in pycharm - but it's safe to do this 
+        # even if we are not in pycharm
+        if [ -z "$TERM_PROGRAM" ]; then
+            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
+            POWERLEVEL9K_DISABLE_RPROMPT=true
+        fi
+    elif [ "$(uname)" = "Linux" ]; then
+        # I am assuming that /home/rbever/.local/share/applications/jna_jar.desktop is the ubuntu launcher file for pycharm. 
+        # For terminator it is /usr/share/applications/terminator.desktop
+        # For Gnome terminal it is unset
+        #echo "GIO_LAUNCHED_DESKTOP_FILE=$GIO_LAUNCHED_DESKTOP_FILE"
+        if [[ "$GIO_LAUNCHED_DESKTOP_FILE" == *"jna_jar.desktop"* ]]; then
+            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
+            POWERLEVEL9K_DISABLE_RPROMPT=true
+        fi
+    else
+        # do nothing
     fi
-elif [ "$(uname)" = "Linux" ]; then
-    # I am assuming that /home/rbever/.local/share/applications/jna_jar.desktop is the ubuntu launcher file for pycharm. 
-    # For terminator it is /usr/share/applications/terminator.desktop
-    # For Gnome terminal it is unset
-    #echo "GIO_LAUNCHED_DESKTOP_FILE=$GIO_LAUNCHED_DESKTOP_FILE"
-    if [[ "$GIO_LAUNCHED_DESKTOP_FILE" == *"jna_jar.desktop"* ]]; then
-        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
-        POWERLEVEL9K_DISABLE_RPROMPT=true
-    fi
-else
-    # do nothing
 fi
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=false
@@ -118,8 +121,8 @@ eval "$(pyenv virtualenv-init -)"
 ######################################
 # jenv settings
 ######################################
-# export PATH="$HOME/.jenv/bin:$PATH"
-# eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
