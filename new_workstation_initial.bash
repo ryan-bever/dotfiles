@@ -7,14 +7,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 sudo apt update
 
 #
-# shell and vim
-#
-sudo apt install -y terminator
-sudo apt install -y vim-gnome
-
-
-
-#
 # zsh
 #
 sudo apt install -y zsh 
@@ -31,7 +23,23 @@ fi
 chsh /usr/bin/zsh
 
 
+# Do homedir hack
+# https://confluence.ngage.netapp.com/display/SFI/Home+Directory+work-around
+# NOTE: The bash script will add another entry to /etc/passwd for user - just go edit the one from above with zsh and point it at /home/rbever and remove the secone one
 
+
+# Switch desktop to Mate to avoid gnome flashing problem
+
+
+
+
+
+
+#
+# shell and vim
+#
+sudo apt install -y terminator
+sudo apt install -y vim-gnome
 
 
 #
