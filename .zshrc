@@ -206,4 +206,9 @@ if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
 
+# Source in .gcloudrc if it exists
+if [ -f ~/.gcloudrc ]; then
+    source ~/.gcloudrc
+fi
+
 

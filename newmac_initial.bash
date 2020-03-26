@@ -45,8 +45,8 @@ ln -Fs `find /usr/local -name "MacVim.app"` /Applications/MacVim.app
 brew install pyenv
 brew install pyenv-virtualenv
 # brew install zlib
-pyenv install 3.7.0
-pyenv global 3.7.0
+# pyenv install 3.8.2
+# pyenv global 3.8.2
 
 
 brew cask install scroll-reverser
@@ -54,18 +54,18 @@ brew install the_silver_searcher
 brew cask install diffmerge
 
 
-brew install jenv
-brew cask install java
-brew tap caskroom/versions
-brew cask install java8
+# brew install jenv
+# brew cask install java
+# brew tap caskroom/versions
+# brew cask install java8
 ######
-jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
-jenv add /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home
+# jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+# jenv add /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home
 ######
-jenv global 1.8
-jenv enable-plugin scala
-jenv enable-plugin export
-jenv rehash
+# jenv global 1.8
+# jenv enable-plugin scala
+# jenv enable-plugin export
+# jenv rehash
 
 # utils
 brew install watch
@@ -73,16 +73,16 @@ brew install telnet
 brew install jq
 brew install sshrc
 
-brew install scala 
-brew install sbt
+# brew install scala 
+# brew install sbt
 
-brew install autossh
-brew install mysql-client
+# brew install autossh
+# brew install mysql-client
 
 brew cask install pycharm
-brew cask install intellij-idea
+# brew cask install intellij-idea
 
-brew cask install hipchat
+# brew cask install hipchat
 brew cask install docker
 brew cask install macdown
 brew cask install postman
@@ -93,5 +93,5 @@ brew cask install minikube
 brew install kubectl
 
 # i2cssh
-gem install i2cssh --user-install
+# gem install i2cssh --user-install
 
