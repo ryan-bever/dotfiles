@@ -176,7 +176,7 @@ zstyle ":completion:*:commands" rehash 1
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='vim'
 fi
 
 # Compilation flags
@@ -204,6 +204,11 @@ fi
 # Source in my local .zshrc if it exits
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
+fi
+
+# Source in .gcloudrc if it exists
+if [ -f ~/.gcloudrc ]; then
+    source ~/.gcloudrc
 fi
 
 
