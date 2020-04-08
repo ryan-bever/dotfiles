@@ -26,12 +26,17 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ######################################
 # Powerlevel9k
 ######################################
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv time)
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv history command_execution_time time)
+
+if [ "$(uname)" = "Linux" ]; then
+    # If Linux assume I'm on a remote system - show the host icon which includes ssh indicator
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon host dir vcs)
+fi
 
 # This if statement is to work-around some problem with using material theme in pycharm on Linux and Mac
 # This is probably not the best method, but it works for now.  
-
 USING_MATERIAL_THEME="false"
 if [ "${USING_MATERIAL_THEME}" = "true" ]; then
     if [ "$(uname)" = "Darwin" ]; then

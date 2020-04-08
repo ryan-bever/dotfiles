@@ -21,6 +21,8 @@ HOMEBREW_NO_AUTO_UPDATE=1
 
 
 brew cask install iterm2 
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
 
 
 brew install zsh zsh-completions
