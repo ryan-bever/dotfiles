@@ -52,6 +52,7 @@
 
     # rebase
     squash = "rebase -i origin/master"
+    rebasePreferMine = rebase -XTheirs
 
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"

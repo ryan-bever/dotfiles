@@ -23,8 +23,11 @@ alias agnt="ag --literal --ignore '*_test.py'"
 
 alias k="kubectl"
 alias mk="minikube"
+
+# docker-gc is no longer maintained in favor of docker system prune https://docs.docker.com/engine/reference/commandline/system_prune/
 # Add images to /etc/docker-gc-exclude to exclude them from docker-gc
-alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc -e FORCE_IMAGE_REMOVAL=1 -e FORCE_CONTAINER_REMOVAL=1 spotify/docker-gc"
+# alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc -e FORCE_IMAGE_REMOVAL=1 -e FORCE_CONTAINER_REMOVAL=1 spotify/docker-gc"
+alias docker-gc="docker system prune --volumes"
 
 # Allow watch to work with alias
 # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion

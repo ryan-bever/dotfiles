@@ -69,6 +69,7 @@ jenv rehash
 
 # utils
 brew install watch
+brew install fswatch
 brew install telnet
 brew install jq
 brew install sshrc
