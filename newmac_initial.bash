@@ -46,6 +46,9 @@ ln -Fs `find /usr/local -name "MacVim.app"` /Applications/MacVim.app
 
 brew install pyenv
 brew install pyenv-virtualenv
+
+# This allows pyenv to guess a version when e.g. #!/usr/bin/env python3.7 is in a shebang and multiple 3.7 versions are installed
+git clone git://github.com/concordusapps/pyenv-implict.git ~/.pyenv/plugins/pyenv-implict
 # brew install zlib
 # pyenv install 3.8.2
 # pyenv global 3.8.2

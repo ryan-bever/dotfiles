@@ -11,6 +11,7 @@ set nobackup               " don't create backup files while editing
 set noswapfile             " don't create swap files while editing
 set writebackup            " use backup when saving files
 set noeb vb t_vb=          " Turn off error bells
+set visualbell
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file

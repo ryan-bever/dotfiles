@@ -1,12 +1,25 @@
 [push]
     default = simple
 [diff]
-    tool = diffmerge
+    # tool = diffmerge
+    tool = meld
 [merge]
-    tool = diffmerge
+    # tool = diffmerge
+    tool = meld
     keepBackup = false
 [difftool]
     prompt = false
+[mergetool "diffmerge"]
+    cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge  --merge --result=$MERGED $LOCAL $BASE $REMOTE
+[difftool "diffmerge"]
+    cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge $LOCAL $REMOTE
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+[mergetool "meld"]
+    # With Meld you can change the middle pane to be the partially merged file $MERGED or the common ancestor $BASE
+    # Using the partially merged file is the most common but using the base is sometimes useful for messy merges
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    # cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 [core]
     excludesfile = ~/.gitignore_global
     editor = vim
@@ -58,10 +71,6 @@
     la = "!git config -l | grep alias | cut -c 7-"
 [credential]
 	helper = store
-[mergetool "diffmerge"]
-    cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge  --merge --result=$MERGED $LOCAL $BASE $REMOTE
-[difftool "diffmerge"]
-    cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge $LOCAL $REMOTE
 
 # Source in local gitconfig i.e user settings
 [include]
@@ -69,3 +78,8 @@
 [user]
 	name = Ryan Bever
 	email = ryan.bever@netapp.com
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

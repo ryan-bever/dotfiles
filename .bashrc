@@ -13,3 +13,5 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 
+
+source /Users/rbever/.config/broot/launcher/bash/br

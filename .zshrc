@@ -222,3 +222,5 @@ if [ -f ~/.gcloudrc ]; then
 fi
 
 
+
+source /Users/rbever/.config/broot/launcher/bash/br
