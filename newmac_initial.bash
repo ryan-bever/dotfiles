@@ -38,8 +38,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-brew install macvim
-ln -Fs `find /usr/local -name "MacVim.app"` /Applications/MacVim.app
+brew cask install macvim
 
 
 
