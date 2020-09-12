@@ -1,0 +1,45 @@
+# Install Firefox lastpass add on
+# Install Konsole
+# Install gvim
+
+sudo apt install -y konsole
+ssh-keygen -t rsa -b 4096 -C "beverku@gmail.com"
+sudo apt install -y zsh
+sudo apt install -y curl 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" --batchgit clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
+#
+# Setup Konsole for shell
+#
+# Install font
+https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo
+https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo/M/Regular/complete/Meslo%20LG%20M%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+
+Settings -> Command -> /usr/bin/zsh
+Settings -> Appearance -> Font -> Choose -> "MesloLGM Nerd Font Mono 9pt"  # Requires restarting Konsole after installing font to see
+Settings -> Configure Keyboard Shorcuts
+copy -> Ctrl-C
+past -> Ctrl-V
+select all -> Ctrl-a
+# FYI - to do a regular ctrl-c sigint - do ctrl-c with nothing selected
+
+# Install dotfiles
+git clone git@github.com:beverku/dotfiles.git .dotfiles
+sudo apt install -y git
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+./.dotfiles/install.sh
+
+
+
+#
+# python
+#
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+
+#
+# utils
+#
+sudo apt install -y silversearcher-ag
+sudo apt install -y jq
+sudo apt install -y gnome-tweak-tool
