@@ -216,11 +216,14 @@ if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
 
+# The next line enables shell command completion for gcloud.
 # Source in .gcloudrc if it exists
 if [ -f ~/.gcloudrc ]; then
     source ~/.gcloudrc
 fi
-
+if [ -f '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc'; fi
 
 
 source /Users/rbever/.config/broot/launcher/bash/br
+
+

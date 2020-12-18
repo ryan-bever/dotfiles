@@ -3,16 +3,22 @@
 [diff]
     # tool = diffmerge
     tool = meld
+    # tool = sourcetree
 [merge]
     # tool = diffmerge
     tool = meld
+    # tool = sourcetree
     keepBackup = false
 [difftool]
     prompt = false
+
+# diffmerge
 [mergetool "diffmerge"]
     cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge  --merge --result=$MERGED $LOCAL $BASE $REMOTE
 [difftool "diffmerge"]
     cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge $LOCAL $REMOTE
+
+# meld
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
 [mergetool "meld"]
@@ -20,8 +26,17 @@
     # Using the partially merged file is the most common but using the base is sometimes useful for messy merges
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
     # cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
+# sourcetree
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
 [core]
-    excludesfile = ~/.gitignore_global
+    excludesfile = /Users/rbever/.gitignore_global
     editor = vim
 [alias]
     #one-line log
@@ -48,7 +63,7 @@
     d = diff
     ds = diff --stat
     dc = diff --cached
-    dom = diff origin/master
+    dom = diff origin/trunk
     ddev = diff origin/dev-1.0
     dlast = diff HEAD^ HEAD
 
@@ -64,7 +79,7 @@
     visual = !gitk &
 
     # rebase
-    squash = "rebase -i origin/master"
+    squash = "rebase -i origin/trunk"
     rebasePreferMine = rebase -XTheirs
 
     # list aliases
@@ -83,3 +98,5 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[url "git@github.com:"]
+	insteadOf = https://github.com/
