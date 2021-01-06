@@ -21,8 +21,13 @@ alias agls='ag --case-sensitive --literal'
 alias agnt="ag --literal --ignore '*_test.py'"
 
 
+# k8s
 alias k="kubectl"
 alias mk="minikube"
+alias klog="kubectl logs --follow"
+# alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
+function pname () { kubectl get pods -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
+function dname () { kubectl get deployments.apps -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
 
 # docker-gc is no longer maintained in favor of docker system prune https://docs.docker.com/engine/reference/commandline/system_prune/
 # Add images to /etc/docker-gc-exclude to exclude them from docker-gc
