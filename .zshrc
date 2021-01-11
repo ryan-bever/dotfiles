@@ -5,6 +5,11 @@ if [ -f ~/.pathrc ]; then
     source ~/.pathrc
 fi
 
+# Add path to my custom .completions dir to fpath so zsh will load them automatically
+# See: https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
+# To add a completion file just put it in that dir e.g. `operator-sdk completion zsh > ~/.completions/operator-sdk.zsh`
+fpath=( ~/.completions "${fpath[@]}" )
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -26,9 +31,17 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ######################################
 # Powerlevel9k
 ######################################
+# See: https://github.com/romkatv/powerlevel10k#how-do-i-enable-instant-prompt
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv history command_execution_time time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv kubecontext history command_execution_time time)
 
 if [ "$(uname)" = "Linux" ]; then
     # If Linux assume I'm on a remote system - show the host icon which includes ssh indicator
@@ -78,6 +91,10 @@ POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=20
 POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_middle"
 # POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
 
+
+# Show prompt segment "kubecontext" only when the command you are typing
+# invokes kubectl, helm, kubens, kubectx, oc, istioctl, kogito, k9s or helmfile.
+# typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile'
 
 
 
@@ -154,6 +171,7 @@ plugins=(
   scala
   kubectl
   minikube
+  helm
 )
 
 # NOTE: When using zsh git plugins on Mac with brew installed git see these issues:

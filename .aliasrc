@@ -25,6 +25,7 @@ alias agnt="ag --literal --ignore '*_test.py'"
 alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
+alias kdebug="kubectl run -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
 # alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
 function pname () { kubectl get pods -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
 function dname () { kubectl get deployments.apps -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
