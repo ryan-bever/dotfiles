@@ -41,6 +41,28 @@ alias watch='watch --color '
 
 alias postman='open -a Postman'
 
+function countdown(){
+   date1=$((`date +%s` + $1));
+   while [ "$date1" -ge `date +%s` ]; do
+     echo -ne "$(date -u -r $(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+}
+function stopwatch(){
+  date1=`date +%s`;
+   while true; do
+    echo -ne "$(date -u -r $((`date +%s` - $date1)) +%H:%M:%S)\r";
+    sleep 0.1
+   done
+}
+
+gocover () {
+  local t=$(mktemp -t cover)
+  go test $COVERFLAGS -short -coverprofile=$t ./... \
+    && go tool cover -func=$t \
+    && unlink $t
+}
+
 if [ -f ~/.aliasrc.local ]; then
     source ~/.aliasrc.local
 fi

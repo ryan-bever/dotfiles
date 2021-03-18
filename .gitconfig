@@ -38,6 +38,7 @@
 [core]
     excludesfile = /Users/rbever/.gitignore_global
     editor = vim
+    pager = less -x1,5
 [alias]
     #one-line log
     ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=short
@@ -63,8 +64,7 @@
     d = diff
     ds = diff --stat
     dc = diff --cached
-    dom = diff origin/trunk
-    ddev = diff origin/dev-1.0
+    dom = diff origin/integration
     dlast = diff HEAD^ HEAD
 
     s = status
