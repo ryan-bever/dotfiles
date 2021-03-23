@@ -20,9 +20,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 HOMEBREW_NO_AUTO_UPDATE=1
 
 brew install git
-brew cask install iterm2 
+brew install iterm2 
 brew tap homebrew/cask-fonts
-brew cask install font-hack-nerd-font
+brew install font-hack-nerd-font
 
 
 brew install zsh zsh-completions
@@ -38,7 +38,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-brew cask install macvim
+brew install macvim
 
 
 
@@ -46,9 +46,9 @@ brew install pyenv
 brew install pyenv-virtualenv
 
 
-brew cask install scroll-reverser
+brew install scroll-reverser
 brew install the_silver_searcher
-brew cask install diffmerge
+brew install diffmerge
 
 
 # utils
@@ -57,4 +57,5 @@ brew install fswatch
 brew install telnet
 brew install jq
 brew install sshrc
+brew install meld
 
