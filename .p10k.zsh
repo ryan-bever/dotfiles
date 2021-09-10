@@ -36,7 +36,7 @@
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
-    newline                 # \n
+    newline
     prompt_char             # prompt symbol
   )
 
@@ -382,6 +382,14 @@
       local conflicted='%244F'  # grey foreground
     fi
 
+    # rbever: 9/10/21: added to change color of git branch based on status
+    # The branch color is either clean(green) or not(red)
+    local branch_color=${clean}
+    (( VCS_STATUS_NUM_CONFLICTED )) && branch_color=${conflicted}
+    (( VCS_STATUS_NUM_STAGED     )) && branch_color=${conflicted}
+    (( VCS_STATUS_NUM_UNSTAGED   )) && branch_color=${conflicted}
+    (( VCS_STATUS_NUM_UNTRACKED  )) && branch_color=${conflicted}
+
     local res
 
     if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
@@ -390,7 +398,7 @@
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
       # (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
-      res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+      res+="${branch_color}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
     fi
 
     if [[ -n $VCS_STATUS_TAG
@@ -409,11 +417,11 @@
     # Display the current Git commit if there is no branch and no tag.
     # Tip: To always display the current Git commit, delete the next line.
     [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_TAG ]] &&  # <-- this line
-      res+="${meta}@${clean}${VCS_STATUS_COMMIT[1,8]}"
+      res+="${meta}@${branch_color}${VCS_STATUS_COMMIT[1,8]}"
 
     # Show tracking branch name if it differs from local branch.
     if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
-      res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"
+      res+="${meta}:${branch_color}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"
     fi
 
     # Display "wip" if the latest commit's summary contains "wip" or "WIP".
@@ -479,7 +487,7 @@
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
   # Icon color.
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=76
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=255
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -1546,7 +1554,7 @@
   # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%fat '
-
+  
   # Example of a user-defined prompt segment. Function prompt_example will be called on every
   # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
   # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
@@ -1586,7 +1594,7 @@
   #   - always:   Trim down prompt when accepting a command line.
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
-  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 
   # Instant prompt mode.
   #
