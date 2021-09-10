@@ -183,5 +183,8 @@ if [ -f ~/.gcloudrc ]; then
 fi
 if [ -f '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc'; fi
 
+# rbever: I have 3 different p10k configs to choose from uncomment only one:
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh.lean ]] || source ~/.p10k.zsh.lean
+[[ ! -f ~/.p10k.zsh.classic ]] || source ~/.p10k.zsh.classic
+# [[ ! -f ~/.p10k.zsh.rainbow ]] || source ~/.p10k.zsh.rainbow

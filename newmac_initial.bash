@@ -41,6 +41,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/the
 
 
 
+
 # python
 brew install pyenv
 brew install pyenv-virtualenv

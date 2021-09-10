@@ -104,3 +104,5 @@
 	clean = git-lfs clean -- %f
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[init]
+	defaultBranch = main
