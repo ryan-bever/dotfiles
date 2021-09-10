@@ -1299,11 +1299,11 @@
 			<key>Name</key>
 			<string>MyDefault</string>
 			<key>Non Ascii Font</key>
-			<string>HackNerdFontComplete-Regular 12</string>
+			<string>MesloLGS-NF-Regular 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HackNerdFontComplete-Regular 10</string>
+			<string>MesloLGS-NF-Regular 10</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2010,11 +2010,11 @@
 			<key>Name</key>
 			<string>Prod</string>
 			<key>Non Ascii Font</key>
-			<string>HackNerdFontCompleteM-Regular 11</string>
+			<string>MesloLGS-NF-Regular 11</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HackNerdFontCompleteM-Regular 11</string>
+			<string>MesloLGS-NF-Regular 11</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2708,11 +2708,11 @@
 			<key>Name</key>
 			<string>Stage</string>
 			<key>Non Ascii Font</key>
-			<string>HackNerdFontCompleteM-Regular 11</string>
+			<string>MesloLGS-NF-Regular 11</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HackNerdFontCompleteM-Regular 11</string>
+			<string>MesloLGS-NF-Regular 11</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>

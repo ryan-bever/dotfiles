@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Source in my other rc dotfiles that is shared with bash and zsh
@@ -26,76 +33,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # An empty array have no effect
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-
-######################################
-# Powerlevel9k
-######################################
-# See: https://github.com/romkatv/powerlevel10k#how-do-i-enable-instant-prompt
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv kubecontext history command_execution_time time)
-
-if [ "$(uname)" = "Linux" ]; then
-    # If Linux assume I'm on a remote system - show the host icon which includes ssh indicator
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon host dir vcs)
-fi
-
-# This if statement is to work-around some problem with using material theme in pycharm on Linux and Mac
-# This is probably not the best method, but it works for now.  
-USING_MATERIAL_THEME="false"
-if [ "${USING_MATERIAL_THEME}" = "true" ]; then
-    if [ "$(uname)" = "Darwin" ]; then
-        # For Mac the only difference I have found in env is that TERM_PROGRAM is set to iTerm.app or Apple_Terminal
-        # for the two terminal programs that I use.  This variable is unset in pycharm - but it's safe to do this 
-        # even if we are not in pycharm
-        if [ -z "$TERM_PROGRAM" ]; then
-            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
-            POWERLEVEL9K_DISABLE_RPROMPT=true
-        fi
-    elif [ "$(uname)" = "Linux" ]; then
-        # I am assuming that /home/rbever/.local/share/applications/jna_jar.desktop is the ubuntu launcher file for pycharm. 
-        # For terminator it is /usr/share/applications/terminator.desktop
-        # For Gnome terminal it is unset
-        #echo "GIO_LAUNCHED_DESKTOP_FILE=$GIO_LAUNCHED_DESKTOP_FILE"
-        if [[ "$GIO_LAUNCHED_DESKTOP_FILE" == *"jna_jar.desktop"* ]]; then
-            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
-            POWERLEVEL9K_DISABLE_RPROMPT=true
-        fi
-    else
-        # do nothing
-    fi
-fi
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=false
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
-
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='yellow'
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='236'
-
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='red'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='red'
-POWERLEVEL9K_VCS_SHORTEN_LENGTH=20
-POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=20
-POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_middle"
-# POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
-
-
-# Show prompt segment "kubecontext" only when the command you are typing
-# invokes kubectl, helm, kubens, kubectx, oc, istioctl, kogito, k9s or helmfile.
-# typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile'
-
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -246,4 +183,5 @@ if [ -f ~/.gcloudrc ]; then
 fi
 if [ -f '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc'; fi
 
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
