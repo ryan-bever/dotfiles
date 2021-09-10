@@ -142,8 +142,12 @@ COMPLETION_WAITING_DOTS="true"
 ######################################
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# Updated see: https://stackoverflow.com/a/68228627
+eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
+# See: https://github.com/pyenv/pyenv/issues/1740
+export LDFLAGS="-L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/bzip2/include"
 
 ######################################
 # jenv settings
@@ -170,6 +174,7 @@ plugins=(
   sbt
   scala
   kubectl
+  oc
   minikube
   helm
 )
@@ -240,8 +245,5 @@ if [ -f ~/.gcloudrc ]; then
     source ~/.gcloudrc
 fi
 if [ -f '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-source /Users/rbever/.config/broot/launcher/bash/br
 
 

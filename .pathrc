@@ -13,3 +13,15 @@ fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/rbever/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rbever/bin/google-cloud-sdk/path.zsh.inc'; fi
+
+
+# temporary: 4/22/21 - until bigsur upgrade
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
+# use coreutils instead of mac commands
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# krew - https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+

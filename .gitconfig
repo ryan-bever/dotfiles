@@ -1,13 +1,11 @@
 [push]
     default = simple
 [diff]
-    # tool = diffmerge
-    tool = meld
-    # tool = sourcetree
+    # tool = meld
+    tool = goland
 [merge]
-    # tool = diffmerge
-    tool = meld
-    # tool = sourcetree
+    # tool = meld
+    tool = goland
     keepBackup = false
 [difftool]
     prompt = false
@@ -17,6 +15,12 @@
     cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge  --merge --result=$MERGED $LOCAL $BASE $REMOTE
 [difftool "diffmerge"]
     cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge $LOCAL $REMOTE
+
+# goland
+[mergetool "goland"]
+    cmd = /Applications/GoLand.app/Contents/MacOS/goland merge $LOCAL $MERGED $REMOTE
+[difftool "goland"]
+    cmd = /Applications/GoLand.app/Contents/MacOS/goland diff $LOCAL $REMOTE
 
 # meld
 [difftool "meld"]

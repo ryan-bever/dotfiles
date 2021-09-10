@@ -1,5 +1,5 @@
 # Some shortcuts for different directory listings
-alias ls='ls -FGh'              # classify files in colour
+alias ls='ls -FGh --color'              # classify files in colour
 alias ll='ls -l'                # long list
 alias la='ls -A'                # all but . and ..
 alias lla='ls -lA'              # all but . and ..
@@ -7,6 +7,9 @@ alias llah='ls -lAh'            # all but . and ..
 
 #cd to git project root
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
+alias acc='cd ~/git/polaris/acc-operator'
+alias pcloud='cd ~/git/polaris/pcloud'
+alias rebase='git fetch && git rebase -i origin/integration'
 
 alias egrep='egrep --color'
 alias grep='egrep'
@@ -21,14 +24,37 @@ alias agls='ag --case-sensitive --literal'
 alias agnt="ag --literal --ignore '*_test.py'"
 
 
-# k8s
+
+
+alias please='sudo $(fc -ln -1)'
+
+
+# k8s and astra
 alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
 alias kdebug="kubectl run -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
+alias astra="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.' -"
+alias astra-latest="( cd /Users/rbever/git/polaris/cicd/scripts && ./get_latest_version_tag.sh astra)"
+alias astra-delete="kubectl delete -n pcloud astracontrolcenters.astra.netapp.io astra"
+alias astra-show="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.' -"
+alias astra-status="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.status' -"
+alias astra-password="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.status.uuid' - | xargs -I{} echo 'ACC-{}'"
+alias astra-resources="kubectl get all -n pcloud -o jsonpath='{..resources}' | tr -s '[[:space:]]' '\n'"
+alias astra-images="kubectl get all -n pcloud -o jsonpath='{..image}' | tr -s '[[:space:]]' '\n'"
+alias astra-watch="watch 'kubectl get pods -A | grep -E \"(netapp|pcloud)\"'"
 # alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
-function pname () { kubectl get pods -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
+function pname () { kubectl get pods -o name --all-namespaces | grep $1 }
 function dname () { kubectl get deployments.apps -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
+function klogaeo () { pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator }
+function kdeleteaeo () { pname acc-operator-controller-manager | xargs kubectl delete -n netapp-acc-operator }
+alias kcdd="kubectl config use-context docker-desktop"
+alias kccaas="kubectl config use-context dev-ol-astra-enterprise-team3-11"
+alias kc3d="kubectl config use-context k3d-ae"
+alias hmb="( acc && make apply-latest )"
+alias hmb-caas="( acc && make apply-latest ASTRA_ADDRESS=dev-ol-astra-enterprise-team3-11-lb.rtp.openenglab.netapp.com )"
+alias hmb-last-release="( acc && make apply-last-release )"
+
 
 # docker-gc is no longer maintained in favor of docker system prune https://docs.docker.com/engine/reference/commandline/system_prune/
 # Add images to /etc/docker-gc-exclude to exclude them from docker-gc

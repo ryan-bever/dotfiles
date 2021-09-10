@@ -38,24 +38,31 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-brew install macvim
 
 
 
+# python
 brew install pyenv
 brew install pyenv-virtualenv
 
 
+
+# utils
 brew install scroll-reverser
 brew install the_silver_searcher
 brew install diffmerge
-
-
-# utils
+brew install macvim
 brew install watch
 brew install fswatch
 brew install telnet
 brew install jq
 brew install sshrc
 brew install meld
+brew install wget
+brew install slack
 
+
+
+# go and k8s
+brew install go
+brew install kubectl

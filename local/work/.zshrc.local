@@ -1,0 +1,4 @@
+# Source in my local .git-polaris-credentials if it exits
+if [ -f ~/.git-polaris-credentials ]; then
+    source ~/.git-polaris-credentials
+fi
