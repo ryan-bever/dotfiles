@@ -57,10 +57,12 @@ brew install watch
 brew install fswatch
 brew install telnet
 brew install jq
+brew install python-yq
 brew install sshrc
 brew install meld
 brew install wget
 brew install slack
+brew install speedtest-cli
 
 
 

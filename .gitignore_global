@@ -85,5 +85,3 @@ target
 .python-version
 
 
-# astractl symlink for whelp development
-whelp/astractl

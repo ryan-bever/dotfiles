@@ -9,6 +9,7 @@ alias llah='ls -lAh'            # all but . and ..
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
 alias acc='cd ~/git/polaris/acc-operator'
 alias pcloud='cd ~/git/polaris/pcloud'
+alias whelp='cd ~/git/polaris/whelp'
 alias rebase='git fetch && git rebase -i origin/integration'
 
 alias egrep='egrep --color'
@@ -34,12 +35,12 @@ alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
 alias kdebug="kubectl run -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
-alias astra="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.' -"
+alias astra="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.' "
 alias astra-latest="( cd /Users/rbever/git/polaris/cicd/scripts && ./get_latest_version_tag.sh astra)"
 alias astra-delete="kubectl delete -n pcloud astracontrolcenters.astra.netapp.io astra"
-alias astra-show="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.' -"
-alias astra-status="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.status' -"
-alias astra-password="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq e '.status.uuid' - | xargs -I{} echo 'ACC-{}'"
+alias astra-show="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.'"
+alias astra-status="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status'"
+alias astra-password="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status.uuid' | xargs -I{} echo 'ACC-{}'"
 alias astra-resources="kubectl get all -n pcloud -o jsonpath='{..resources}' | tr -s '[[:space:]]' '\n'"
 alias astra-images="kubectl get all -n pcloud -o jsonpath='{..image}' | tr -s '[[:space:]]' '\n'"
 alias astra-watch="watch 'kubectl get pods -A | grep -E \"(netapp|pcloud)\"'"
@@ -89,6 +90,33 @@ gocover () {
   go test $COVERFLAGS -short -coverprofile=$t ./... \
     && go tool cover -func=$t \
     && unlink $t
+}
+
+function jqlogs() {
+  jq -cr --raw-input '
+    def levelColor: {
+      "trace4": "\u001b[38;5;8m",
+      "trace3": "\u001b[38;5;8m",
+      "trace2": "\u001b[38;5;8m",
+      "trace": "\u001b[38;5;2m",
+      "debug": "\u001b[38;5;5m",
+      "info": "\u001b[38;5;4m",
+      "warn": "\u001b[38;5;3m",
+      "error": "\u001b[38;5;1m",
+      "fatal": "\u001b[38;5;1m"
+    };
+    def rpad($len; $fill): tostring | ($len - length) as $l | . + ($fill * $l)[0:$l];
+    . as $line |
+    try (
+      fromjson |
+      (
+        "\u001b[38;5;3m" + .timestamp + "\u001b[0m" + "    " +
+        (try(levelColor[.level]) catch "") + (.level | ascii_upcase | rpad(8; " ")) + "\u001b[0m" +
+        "\u001b[38;5;6m" + (.logger | rpad(30;" "))[0:30] + "\u001b[0m" + 
+        (try(levelColor[.level]) catch "") + "  " + .msg + "    " + "\u001b[0m" +
+        (. | del(.timestamp, .level, .msg, .application, .component, .logger) | tojson | " \u001b[38;5;7m" + . + "\u001b[0m")
+      )
+    ) catch $line'
 }
 
 if [ -f ~/.aliasrc.local ]; then
