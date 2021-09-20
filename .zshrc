@@ -72,6 +72,11 @@ COMPLETION_WAITING_DOTS="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+#
+
+# Prevent zsh from showing highlighted % on uncompleted output
+# See: https://unix.stackexchange.com/questions/167582/why-zsh-ends-a-line-with-a-highlighted-percent-symbol
+PROMPT_EOL_MARK=''
 
 
 ######################################

@@ -1,3 +1,7 @@
+# Allow watch to work with alias
+# https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
+alias watch='watch --color '
+
 # Some shortcuts for different directory listings
 alias ls='ls -FGh --color'              # classify files in colour
 alias ll='ls -l'                # long list
@@ -43,7 +47,13 @@ alias astra-status="kubectl get -o yaml -n pcloud astracontrolcenters.astra.neta
 alias astra-password="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status.uuid' | xargs -I{} echo 'ACC-{}'"
 alias astra-resources="kubectl get all -n pcloud -o jsonpath='{..resources}' | tr -s '[[:space:]]' '\n'"
 alias astra-images="kubectl get all -n pcloud -o jsonpath='{..image}' | tr -s '[[:space:]]' '\n'"
-alias astra-watch="watch 'kubectl get pods -A | grep -E \"(netapp|pcloud)\"'"
+alias astra-pods='kubectl get pods -A  | grep -E "(netapp|pcloud)"'
+
+# This is so gross, but when using OCP the pod namespaces are so wide it wraps, which drives me crazy. So we can limit the output width because we know the pod namespace/names for ACC
+# But because we have to wrap it in quotes to pass to watch and again for awk ther is a bunch of weird quote escaping here.
+alias astra-watch="watch \"kubectl get pods -A | grep -E  \\\"(netapp|pcloud)\\\"  |      awk '{printf \\\"%-22s %-51s %-5s %-20s %-3s %s\\\n\\\", \\\$1,\\\$2,\\\$3,\\\$4,\\\$5,\\\$6}'        \""
+
+
 # alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
 function pname () { kubectl get pods -o name --all-namespaces | grep $1 }
 function dname () { kubectl get deployments.apps -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
@@ -61,10 +71,6 @@ alias hmb-last-release="( acc && make apply-last-release )"
 # Add images to /etc/docker-gc-exclude to exclude them from docker-gc
 # alias docker-gc="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc -e FORCE_IMAGE_REMOVAL=1 -e FORCE_CONTAINER_REMOVAL=1 spotify/docker-gc"
 alias docker-gc="docker system prune --volumes"
-
-# Allow watch to work with alias
-# https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
-alias watch='watch --color '
 
 alias postman='open -a Postman'
 
