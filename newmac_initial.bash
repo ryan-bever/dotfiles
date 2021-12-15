@@ -69,3 +69,12 @@ brew install speedtest-cli
 # go and k8s
 brew install go
 brew install kubectl
+
+
+# Enabel developer mode so goland debugger doesn't ask for password
+# See:  https://stackoverflow.com/questions/19626856/alertdeveloper-tools-access-needs-to-take-control-of-another-process-for-debugg
+DevToolsSecurity -enable
+
+
+# Show dotfiles
+defaults write com.apple.Finder AppleShowAllFiles true; killall Finder

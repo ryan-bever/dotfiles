@@ -12,6 +12,7 @@ alias llah='ls -lAh'            # all but . and ..
 #cd to git project root
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
 alias acc='cd ~/git/polaris/acc-operator'
+alias docs='cd ~/git/polaris.wiki/acc-operator'
 alias pcloud='cd ~/git/polaris/pcloud'
 alias whelp='cd ~/git/polaris/whelp'
 alias rebase='git fetch && git rebase -i origin/integration'
@@ -38,7 +39,8 @@ alias please='sudo $(fc -ln -1)'
 alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
-alias kdebug="kubectl run -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
+alias kdebug="kubectl run -n pcloud -i --rm --tty debug --image=docker.repo.eng.netapp.com/globalcicd/astra/astra-py-k8s:v0.0.3 --restart=Never -- /bin/bash"
+alias kdebug2="kubectl run -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
 alias astra="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.' "
 alias astra-latest="( cd /Users/rbever/git/polaris/cicd/scripts && ./get_latest_version_tag.sh astra)"
 alias astra-delete="kubectl delete -n pcloud astracontrolcenters.astra.netapp.io astra"
@@ -47,23 +49,32 @@ alias astra-status="kubectl get -o yaml -n pcloud astracontrolcenters.astra.neta
 alias astra-password="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status.uuid' | xargs -I{} echo 'ACC-{}'"
 alias astra-resources="kubectl get all -n pcloud -o jsonpath='{..resources}' | tr -s '[[:space:]]' '\n'"
 alias astra-images="kubectl get all -n pcloud -o jsonpath='{..image}' | tr -s '[[:space:]]' '\n'"
-alias astra-pods='kubectl get pods -A  | grep -E "(netapp|pcloud)"'
+alias astra-pods='kubectl get pods -A  | grep -E "(netapp-acc-operator|pcloud)"'
+alias astra-bounce='pname acc-operator-controller-manager | xargs kubectl delete -n netapp-acc-operator ' 
+alias astra-conditions="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status.conditions'"
+alias astra-events="k get events -n pcloud --sort-by='.lastTimestamp'"
+alias acl='pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator '
 
 # This is so gross, but when using OCP the pod namespaces are so wide it wraps, which drives me crazy. So we can limit the output width because we know the pod namespace/names for ACC
 # But because we have to wrap it in quotes to pass to watch and again for awk ther is a bunch of weird quote escaping here.
-alias astra-watch="watch \"kubectl get pods -A | grep -E  \\\"(netapp|pcloud)\\\"  |      awk '{printf \\\"%-22s %-51s %-5s %-20s %-3s %s\\\n\\\", \\\$1,\\\$2,\\\$3,\\\$4,\\\$5,\\\$6}'        \""
+alias astra-watch="watch \"kubectl get pods -A | grep -E  \\\"(netapp-acc-operator|pcloud)\\\"  |      awk '{printf \\\"%-22s %-51s %-5s %-20s %-3s %s\\\n\\\", \\\$1,\\\$2,\\\$3,\\\$4,\\\$5,\\\$6}'        \""
 
 
 # alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
 function pname () { kubectl get pods -o name --all-namespaces | grep $1 }
 function dname () { kubectl get deployments.apps -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
-function klogaeo () { pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator }
+function klogaeo () { pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator | jqlogs }
+function klogo () { pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator | jqlogs }
 function kdeleteaeo () { pname acc-operator-controller-manager | xargs kubectl delete -n netapp-acc-operator }
 alias kcdd="kubectl config use-context docker-desktop"
-alias kccaas="kubectl config use-context dev-ol-astra-enterprise-team3-11"
+alias kccaas="kubectl config use-context caas-team3-11"
 alias kc3d="kubectl config use-context k3d-ae"
+alias kcoc1="kubectl config use-context openshift-cluster01"
+alias kcoc4="kubectl config use-context openshift-cluster-ol-04"
+alias kcoccrc="kubectl config use-context crc-admin"
 alias hmb="( acc && make apply-latest )"
 alias hmb-caas="( acc && make apply-latest ASTRA_ADDRESS=dev-ol-astra-enterprise-team3-11-lb.rtp.openenglab.netapp.com )"
+alias hmb-ocp21="( acc && make apply-latest ASTRA_ADDRESS=openshift-lb-ol-018.rtp.openenglab.netapp.com )"
 alias hmb-last-release="( acc && make apply-last-release )"
 
 
@@ -116,11 +127,13 @@ function jqlogs() {
     try (
       fromjson |
       (
+        # The 21.08 release used a "ts" field only one of these timestamp fields should print
+        # "\u001b[38;5;3m" + (.ts | todateiso8601) + "\u001b[0m" + 
         "\u001b[38;5;3m" + .timestamp + "\u001b[0m" + "    " +
         (try(levelColor[.level]) catch "") + (.level | ascii_upcase | rpad(8; " ")) + "\u001b[0m" +
         "\u001b[38;5;6m" + (.logger | rpad(30;" "))[0:30] + "\u001b[0m" + 
         (try(levelColor[.level]) catch "") + "  " + .msg + "    " + "\u001b[0m" +
-        (. | del(.timestamp, .level, .msg, .application, .component, .logger) | tojson | " \u001b[38;5;7m" + . + "\u001b[0m")
+        (. | del(.ts, .timestamp, .level, .msg, .application, .component, .logger) | tojson | " \u001b[38;5;7m" + . + "\u001b[0m")
       )
     ) catch $line'
 }
