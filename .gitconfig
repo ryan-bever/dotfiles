@@ -85,6 +85,8 @@
     # rebase
     squash = "rebase -i origin/trunk"
     rebasePreferMine = rebase -XTheirs
+    mark = "commit --allow-empty -m 'Rebase Marker'"
+
 
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
