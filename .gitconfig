@@ -90,6 +90,10 @@
 
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
+
+    # stash
+    # Uses hack to get parameter: https://www.atlassian.com/blog/git/advanced-git-aliases
+    stash-named = "!f() { git stash -u -m \"$1\"; }; f"
 [credential]
 	helper = store
 

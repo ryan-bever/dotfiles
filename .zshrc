@@ -105,7 +105,7 @@ export CPPFLAGS="-I/usr/local/opt/bzip2/include"
 plugins=(
   colored-man-pages
   colorize
-  copydir
+  copypath
   copyfile
   extract
   # vi-mode   # This enables the v command going to vim in escape mode which I hate

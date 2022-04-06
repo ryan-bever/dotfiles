@@ -40,8 +40,8 @@ alias please='sudo $(fc -ln -1)'
 alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
-alias kdebug="kubectl run -n pcloud -i --rm --tty debug --image=docker.repo.eng.netapp.com/globalcicd/astra/astra-py-k8s:v0.0.3 --restart=Never -- /bin/bash"
-alias kdebug2="kubectl run -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
+alias kdebug="kubectl run -n pcloud -i --rm --tty debug --image=docker.repo.eng.netapp.com/globalcicd/astra/astra-py-k8s:v0.0.6 --restart=Never -- /bin/bash"
+alias kdebug2="kubectl run -n pcloud -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
 alias astra="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.' "
 alias astra-latest="( cd /Users/rbever/git/polaris/cicd/scripts && ./get_latest_version_tag.sh astra)"
 alias astra-delete="kubectl delete -n pcloud astracontrolcenters.astra.netapp.io astra"
@@ -55,6 +55,8 @@ alias astra-bounce='pname acc-operator-controller-manager | xargs kubectl delete
 alias astra-conditions="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status.conditions'"
 alias astra-events="k get events -n pcloud --sort-by='.lastTimestamp'"
 alias acl='pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator '
+# engage as in make enterprise -> Captain Picard "engage"
+alias engage="( rm -rf /Users/rbever/git/polaris/build; cd /Users/rbever/git/polaris && make enterprise-helm-repo ENTERPRISE=true NEXT_IMAGE_TAG=local)"
 
 # This is so gross, but when using OCP the pod namespaces are so wide it wraps, which drives me crazy. So we can limit the output width because we know the pod namespace/names for ACC
 # But because we have to wrap it in quotes to pass to watch and again for awk ther is a bunch of weird quote escaping here.
