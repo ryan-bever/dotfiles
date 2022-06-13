@@ -102,7 +102,7 @@
     path = ~/.gitconfig.local
 [user]
 	name = Ryan Bever
-	email = ryan.bever@netapp.com
+	email = beverku@gmail.com
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
