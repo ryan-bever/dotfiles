@@ -23,10 +23,6 @@ install.sh
 # New Mac Install
 
 ## Install Font
-Install Meslo powerline font: https://github.com/powerline/fonts/blob/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf
-Install in Terminal 
-Preferences -> Profiles -> Text
-
 Install git by typing git in the terminal and installing the developer command line tools
 
 
@@ -37,4 +33,6 @@ git clone git@github.com:beverku/dotfiles.git .dotfiles
 
 .dotfiles/newmac_initial.bash
 .dotfiles/install.sh
+
+Set iterm and terminal to use Hack Nerd Font Mono
 ~~~

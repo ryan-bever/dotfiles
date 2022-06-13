@@ -8,6 +8,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 
 
 # Pin the version of git that doesn't clobber autocomplete
@@ -61,14 +64,14 @@ brew install python-yq
 brew install sshrc
 brew install meld
 brew install wget
-brew install slack
 brew install speedtest-cli
 
 
 
-# go and k8s
+# go and k8s and aws
 brew install go
 brew install kubectl
+brew install awscli
 
 
 # Enabel developer mode so goland debugger doesn't ask for password
