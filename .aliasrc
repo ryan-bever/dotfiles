@@ -11,11 +11,6 @@ alias llah='ls -lAh'            # all but . and ..
 
 #cd to git project root
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
-alias acc='cd ~/git/polaris/acc-operator'
-alias docs='cd ~/git/polaris.wiki/acc-operator'
-alias pcloud='cd ~/git/polaris/pcloud'
-alias ka='cd ~/git/polaris/kubectl-astra'
-alias whelp='cd ~/git/polaris/whelp'
 alias rebase='git fetch && git rebase -i origin/integration'
 
 alias egrep='egrep --color'
@@ -40,45 +35,18 @@ alias please='sudo $(fc -ln -1)'
 alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
-alias kdebug="kubectl run -n pcloud -i --rm --tty debug --image=docker.repo.eng.netapp.com/globalcicd/astra/astra-py-k8s:v0.0.6 --restart=Never -- /bin/bash"
-alias kdebug2="kubectl run -n pcloud -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
-alias astra="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.' "
-alias astra-latest="( cd /Users/rbever/git/polaris/cicd/scripts && ./get_latest_version_tag.sh astra)"
-alias astra-delete="kubectl delete -n pcloud astracontrolcenters.astra.netapp.io astra"
-alias astra-show="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.'"
-alias astra-status="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status'"
-alias astra-password="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status.uuid' | xargs -I{} echo 'ACC-{}'"
-alias astra-resources="kubectl get all -n pcloud -o jsonpath='{..resources}' | tr -s '[[:space:]]' '\n'"
-alias astra-images="kubectl get all -n pcloud -o jsonpath='{..image}' | tr -s '[[:space:]]' '\n'"
-alias astra-pods='kubectl get pods -A  | grep -E "(netapp-acc-operator|pcloud)"'
-alias astra-bounce='pname acc-operator-controller-manager | xargs kubectl delete -n netapp-acc-operator ' 
-alias astra-conditions="kubectl get -o yaml -n pcloud astracontrolcenters.astra.netapp.io astra | yq '.status.conditions'"
-alias astra-events="k get events -n pcloud --sort-by='.lastTimestamp'"
-alias acl='pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator '
-# engage as in make enterprise -> Captain Picard "engage"
-alias engage="( rm -rf /Users/rbever/git/polaris/build; cd /Users/rbever/git/polaris && make enterprise-helm-repo ENTERPRISE=true NEXT_IMAGE_TAG=local)"
+alias kdebug="kubectl run -n pcloud -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
 
 # This is so gross, but when using OCP the pod namespaces are so wide it wraps, which drives me crazy. So we can limit the output width because we know the pod namespace/names for ACC
 # But because we have to wrap it in quotes to pass to watch and again for awk ther is a bunch of weird quote escaping here.
-alias astra-watch="watch \"kubectl get pods -A | grep -E  \\\"(netapp-acc-operator|pcloud)\\\"  |      awk '{printf \\\"%-22s %-51s %-5s %-20s %-3s %s\\\n\\\", \\\$1,\\\$2,\\\$3,\\\$4,\\\$5,\\\$6}'        \""
+alias pod-watch="watch \"kubectl get pods -A | grep -E  \\\"(abc|xyz)\\\"  |      awk '{printf \\\"%-22s %-51s %-5s %-20s %-3s %s\\\n\\\", \\\$1,\\\$2,\\\$3,\\\$4,\\\$5,\\\$6}'        \""
 
 
 # alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
 function pname () { kubectl get pods -o name --all-namespaces | grep $1 }
 function dname () { kubectl get deployments.apps -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
-function klogaeo () { pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator | jqlogs }
-function klogo () { pname acc-operator-controller-manager | xargs kubectl logs --follow -c manager -n netapp-acc-operator | jqlogs }
-function kdeleteaeo () { pname acc-operator-controller-manager | xargs kubectl delete -n netapp-acc-operator }
+function klogo () { pname xyz | xargs kubectl logs --follow -c c-name -n ns-name | jqlogs }
 alias kcdd="kubectl config use-context docker-desktop"
-alias kccaas="kubectl config use-context caas-team3-11"
-alias kc3d="kubectl config use-context k3d-ae"
-alias kcoc1="kubectl config use-context openshift-cluster01"
-alias kcoc4="kubectl config use-context openshift-cluster-ol-04"
-alias kcoccrc="kubectl config use-context crc-admin"
-alias hmb="( acc && make apply-latest )"
-alias hmb-caas="( acc && make apply-latest ASTRA_ADDRESS=dev-ol-astra-enterprise-team3-11-lb.rtp.openenglab.netapp.com )"
-alias hmb-ocp21="( acc && make apply-latest ASTRA_ADDRESS=openshift-lb-ol-018.rtp.openenglab.netapp.com )"
-alias hmb-last-release="( acc && make apply-last-release )"
 
 
 # docker-gc is no longer maintained in favor of docker system prune https://docs.docker.com/engine/reference/commandline/system_prune/
@@ -90,27 +58,6 @@ alias postman='open -a Postman'
 
 alias ascii-colors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done'
 
-function countdown(){
-   date1=$((`date +%s` + $1));
-   while [ "$date1" -ge `date +%s` ]; do
-     echo -ne "$(date -u -r $(($date1 - `date +%s`)) +%H:%M:%S)\r";
-     sleep 0.1
-   done
-}
-function stopwatch(){
-  date1=`date +%s`;
-   while true; do
-    echo -ne "$(date -u -r $((`date +%s` - $date1)) +%H:%M:%S)\r";
-    sleep 0.1
-   done
-}
-
-gocover () {
-  local t=$(mktemp -t cover)
-  go test $COVERFLAGS -short -coverprofile=$t ./... \
-    && go tool cover -func=$t \
-    && unlink $t
-}
 
 function jqlogs() {
   jq -cr --raw-input '
