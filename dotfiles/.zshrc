@@ -194,14 +194,3 @@ if [ -f '/Users/rbever/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/User
 [[ ! -f ~/.p10k.zsh.classic ]] || source ~/.p10k.zsh.classic
 # [[ ! -f ~/.p10k.zsh.rainbow ]] || source ~/.p10k.zsh.rainbow
 
-#
-#
-#
-if [ -f ~/.aws/auth/aws_login.sh ]; then
-    source ~/.aws/auth/aws_login.sh
-fi
-
-
-# Point DOCKER_HOST to use multipass vm docker with kind
-# See: https://confluence.nvidia.com/display/MOEB/Local+Docker+Setup
-export DOCKER_HOST=tcp://192.168.64.38:2375
