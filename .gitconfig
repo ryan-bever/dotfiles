@@ -102,7 +102,7 @@
     path = ~/.gitconfig.local
 [user]
 	name = Ryan Bever
-	email = beverku@gmail.com
+	email = rbever@nvidia.com
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
@@ -112,3 +112,5 @@
 	insteadOf = https://github.com/
 [init]
 	defaultBranch = main
+[url "ssh://git@gitlab-master.nvidia.com"]
+	insteadOf = https://gitlab-master.nvidia.com

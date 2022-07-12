@@ -168,4 +168,8 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 # defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
 
+# Enable key repeat for VSCode + Vim
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
