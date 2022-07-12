@@ -1,0 +1,46 @@
+# Install Firefox lastpass add on
+# Install Konsole
+# Install gvim
+
+sudo apt install -y konsole
+ssh-keygen -t rsa -b 4096 -C "beverku@gmail.com"
+sudo apt install -y zsh
+sudo apt install -y curl 
+
+# zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+
+#powerlevel10k
+# Install the recommended fonts - follow instructions to set the default fault for gnome terminal
+https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+# Install the theme in oh-my-zsh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+
+
+
+
+
+#
+# Setup Konsole for shell
+#
+# Install font
+https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo
+https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo/M/Regular/complete/Meslo%20LG%20M%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+
+Settings -> Command -> /usr/bin/zsh
+Settings -> Appearance -> Font -> Choose -> "MesloLGM Nerd Font Mono 9pt"  # Requires restarting Konsole after installing font to see
+Settings -> Configure Keyboard Shorcuts
+copy -> Ctrl-C
+past -> Ctrl-V
+select all -> Ctrl-a
+# FYI - to do a regular ctrl-c sigint - do ctrl-c with nothing selected
+
+# Install dotfiles
+# link work dotfiles first
+cd dotfiles
+./install.sh
+
+
+
