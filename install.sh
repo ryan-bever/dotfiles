@@ -9,6 +9,7 @@ echo "####################################"
 
 
 DOTFILES_PATH="${HOME}/.dotfiles"
+DOTFILES_DOTFILES_PATH="${HOME}/.dotfiles/dotfiles"
 DOTFILES_LOCAL_PATH="${DOTFILES_PATH}/local"
 DOTFILES_ETC_PATH="${DOTFILES_PATH}/etc"
 
@@ -67,7 +68,7 @@ done
 
 # Main dotfile symlinks
 echo ""
-make_links ${DOTFILES_PATH} ${HOME} ${TOP_LEVEL_FILE_AND_DIR_MODE} ${WITHOUT_SUDO}
+make_links ${DOTFILES_DOTFILES_PATH} ${HOME} ${TOP_LEVEL_FILE_AND_DIR_MODE} ${WITHOUT_SUDO}
 
 
 # local dotfile symlinks
