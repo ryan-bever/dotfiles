@@ -14,9 +14,6 @@ alias cdr='cd "$(git rev-parse --show-toplevel)"'
 alias rebase='git fetch && git rebase -i origin/main'
 
 # folders
-alias nvc='cd ~/dev/nvcloud'
-alias ss='cd ~/dev/nvcloud/simple-share-service'
-alias docs='cd ~/dev/nvcloud/cne-docs'
 
 
 # grep and ag
@@ -42,18 +39,10 @@ alias please='sudo $(fc -ln -1)'
 alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
-alias kdebug="kubectl run -n pcloud -i --rm --tty debug --image=alpine --restart=Never -- /bin/ash"
-
-# This is so gross, but when using OCP the pod namespaces are so wide it wraps, which drives me crazy. So we can limit the output width because we know the pod namespace/names for ACC
-# But because we have to wrap it in quotes to pass to watch and again for awk ther is a bunch of weird quote escaping here.
-alias pod-watch="watch \"kubectl get pods -A | grep -E  \\\"(abc|xyz)\\\"  |      awk '{printf \\\"%-22s %-51s %-5s %-20s %-3s %s\\\n\\\", \\\$1,\\\$2,\\\$3,\\\$4,\\\$5,\\\$6}'        \""
-
 
 # alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
 function pname () { kubectl get pods -o name --all-namespaces | grep $1 }
 function dname () { kubectl get deployments.apps -o name --all-namespaces -lapp.kubernetes.io/name=$1 }
-function klogo () { pname xyz | xargs kubectl logs --follow -c c-name -n ns-name | jqlogs }
-alias kcdd="kubectl config use-context docker-desktop"
 
 
 # docker-gc is no longer maintained in favor of docker system prune https://docs.docker.com/engine/reference/commandline/system_prune/
@@ -66,7 +55,7 @@ alias postman='open -a Postman'
 alias ascii-colors='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done'
 
 
-function jqlogs() {
+function _jqlogs() {
   jq -cr --raw-input '
     def levelColor: {
       "trace4": "\u001b[38;5;8m",
