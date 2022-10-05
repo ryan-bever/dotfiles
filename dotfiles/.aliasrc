@@ -12,6 +12,8 @@ alias llah='ls -lAh'            # all but . and ..
 # git
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
 alias rebase='git fetch && git rebase -i origin/main'
+alias ga='git commit --amend --no-edit -a'
+alias gaf="git commit --amend --no-edit -a && git push --force"
 
 # folders
 
@@ -39,6 +41,10 @@ alias please='sudo $(fc -ln -1)'
 alias k="kubectl"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
+alias lc="kubectl config get-contexts -o name"
+alias cc="kubectl config current-context"
+alias uc="kubectl config use-context"
+
 
 # alias does not accept parameters but a function can be called just like an alias. For pname we need the $1
 function pname () { kubectl get pods -o name --all-namespaces | grep $1 }

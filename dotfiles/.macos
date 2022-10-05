@@ -58,6 +58,15 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 5
 
+
+###############################################################################
+# Screenshot / Screen Capture                                                 #
+###############################################################################
+
+# Save as jpq instead of png; it's more widely accepted and smaller
+write com.apple.screencapture type jpg
+
+
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################

@@ -17,6 +17,10 @@ fi
 # To add a completion file just put it in that dir e.g. `operator-sdk completion zsh > ~/.completions/operator-sdk.zsh`
 fpath=( ~/.completions "${fpath[@]}" )
 
+# Prevent escaping when urls are pasted into zsh shell
+# See: https://github.com/ohmyzsh/ohmyzsh/issues/7632
+DISABLE_MAGIC_FUNCTIONS=true
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
