@@ -181,6 +181,11 @@ if [ -f ~/.aliasrc ]; then
     source ~/.aliasrc
 fi
 
+# Source in my local .zshrc.secrets if it exits
+# This file should not be checked into source control
+if [ -f ~/.zshrc.secrets ]; then
+    source ~/.zshrc.secrets
+fi
 
 # Source in my local .zshrc if it exits
 if [ -f ~/.zshrc.local ]; then
