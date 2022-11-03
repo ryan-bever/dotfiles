@@ -992,7 +992,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>export KUBECONFIG=$HOME/.kube/clusters/workstation-kind-ucl-dev</string>
+			<string>export KUBECONFIG=$HOME/.kube/config</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
