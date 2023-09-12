@@ -2,11 +2,11 @@
     default = simple
 	autoSetupRemote = true
 [diff]
-    # tool = meld
-    tool = goland
+    tool = meld
+    # tool = goland
 [merge]
-    # tool = meld
-    tool = goland
+    tool = meld
+    # tool = goland
     keepBackup = false
 [difftool]
     prompt = false
@@ -115,3 +115,5 @@
 	defaultBranch = main
 [url "ssh://git@gitlab-master.nvidia.com"]
 	insteadOf = https://gitlab-master.nvidia.com
+[pull]
+	ff = only

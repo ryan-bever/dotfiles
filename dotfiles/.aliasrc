@@ -2,6 +2,8 @@
 # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias watch='watch --color '
 
+alias a='. ~/.aliasrc'
+
 # Some shortcuts for different directory listings
 alias ls='ls -FGh --color'              # classify files in colour
 alias ll='ls -l'                # long list
@@ -39,8 +41,11 @@ alias please='sudo $(fc -ln -1)'
 
 # k8s 
 alias k="kubectl"
+alias kd="kubectl describe"
+alias kns="kubectl config set-context --current --namespace"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
+alias klogs="kubectl logs --follow"
 alias lc="kubectl config get-contexts -o name"
 alias cc="kubectl config current-context"
 alias uc="kubectl config use-context"
