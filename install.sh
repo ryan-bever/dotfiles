@@ -68,7 +68,7 @@ done
 
 # Main dotfile symlinks
 echo ""
-make_links ${DOTFILES_DOTFILES_PATH} ${HOME} ${TOP_LEVEL_FILE_AND_DIR_MODE} ${WITHOUT_SUDO}
+make_links ${DOTFILES_DOTFILES_PATH} ${HOME} ${RECURSIVE_REGULAR_FILE_MODE} ${WITHOUT_SUDO}
 
 
 # local dotfile symlinks
@@ -80,7 +80,7 @@ then
     printf "Please select local dotfiles folder:\n"
     select d in $(ls ${DOTFILES_LOCAL_PATH}); do test -n "$d" && break; echo ">>> Invalid Selection"; done
     link_path="${DOTFILES_LOCAL_PATH}/${d}/dotfiles"
-    make_links ${link_path} ${HOME} ${TOP_LEVEL_FILE_AND_DIR_MODE} ${WITHOUT_SUDO}
+    make_links ${link_path} ${HOME} ${RECURSIVE_REGULAR_FILE_MODE} ${WITHOUT_SUDO}
 fi
 
 # /etc
