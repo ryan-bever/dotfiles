@@ -28,21 +28,8 @@ brew tap homebrew/cask-fonts
 brew install font-hack-nerd-font
 
 
-brew install zsh zsh-completions
-
-
-# oh-my-zsh is going to do this 
-# chsh -s $(which zsh)
-
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" --batch
-
-
-# git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-
-
-
+brew install zsh
+# brew install zsh zsh-completions
 
 
 # python

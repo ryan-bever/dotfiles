@@ -46,17 +46,20 @@ export EDITOR='vim'
 # zap must be installed with:
 # zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
-plug "zap-zsh/zap-prompt"
+#plug "zsh-users/zsh-autosuggestions"
+# plug "zap-zsh/supercharge"
+# plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
 
+# AUTO_MENU="true"
+
+# plug "zap-zsh/supercharge"
+unsetopt MENU_COMPLETE
+unsetopt AUTO_CD
 
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
-
-
 
 # Source in aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -75,4 +78,11 @@ fi
 # Source in my local .zshrc if it exits
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
+fi
+
+# Source in completions
+# Note this must be done after sourcing in .zshrc.local if .zshrc.local contains a eval "$(mise activate zsh)" as
+# that is clobbering the completions.
+if [ -f ~/.zshrc.completions ]; then
+    source ~/.zshrc.completions
 fi
