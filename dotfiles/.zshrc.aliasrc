@@ -2,10 +2,10 @@
 # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias watch='watch --color '
 
-alias a='. ~/.aliasrc'
+alias a='. ~/.zshrc.aliasrc'
 
 # Some shortcuts for different directory listings
-# alias ls='ls -FGh --color'              # classify files in colour
+alias ls='ls -FGh --color'              # classify files in colour
 alias ll='ls -l'                # long list
 alias la='ls -A'                # all but . and ..
 alias lla='ls -lA'              # all but . and ..
@@ -99,3 +99,6 @@ function _jqlogs() {
 if [ -f ~/.zshrc.aliasrc.local ]; then
     source ~/.zshrc.aliasrc.local
 fi
+
+# Reload my completions
+alias completions='source ~/.zshrc.completions; compinit'
