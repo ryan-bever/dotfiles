@@ -2,7 +2,7 @@
 export PATH="${HOME}/bin:${HOME}/git/:$PATH"
 
 # local env
-if [ -f ~/.pathrc.local ]; then
-    source ~/.pathrc.local
+if [ -f ~/.zshrc.pathrc.local ]; then
+    source ~/.zshrc.pathrc.local
 fi
 

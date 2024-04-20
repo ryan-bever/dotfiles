@@ -1,0 +1,11 @@
+# Add shell completions
+
+# Example for a cobra golang binary
+# eval "`bin/cloud-machinery-api completion zsh`"
+
+
+# local env
+if [ -f ~/.zshrc.completions.local ]; then
+    source ~/.zshrc.completions.local
+fi
+

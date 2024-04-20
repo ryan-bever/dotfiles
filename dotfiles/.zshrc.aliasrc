@@ -96,6 +96,6 @@ function _jqlogs() {
     ) catch $line'
 }
 
-if [ -f ~/.aliasrc.local ]; then
-    source ~/.aliasrc.local
+if [ -f ~/.zshrc.aliasrc.local ]; then
+    source ~/.zshrc.aliasrc.local
 fi
