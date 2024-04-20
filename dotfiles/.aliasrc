@@ -33,6 +33,8 @@ alias agli='ag --ignore-case --literal'
 alias agls='ag --case-sensitive --literal'
 alias agnt="ag --literal --ignore '*_test.py'"
 
+alias lc="tr '[:upper:]' '[:lower:]'"
+alias uuidgen="/usr/bin/uuidgen | lc | tee >(pbcopy)"
 
 
 
@@ -46,7 +48,6 @@ alias kns="kubectl config set-context --current --namespace"
 alias mk="minikube"
 alias klog="kubectl logs --follow"
 alias klogs="kubectl logs --follow"
-alias lc="kubectl config get-contexts -o name"
 alias cc="kubectl config current-context"
 alias uc="kubectl config use-context"
 

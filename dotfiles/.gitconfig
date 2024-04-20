@@ -76,15 +76,16 @@
     ss = status -s
     co = checkout
     cob = checkout -b
+    # 2/6/24: See my change to sort branches by last modified by default
     # list branches sorted by last modified
-    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    # b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 
     #use git unstage filename
     unstage = "reset HEAD --"
     visual = !gitk &
 
     # rebase
-    squash = "rebase -i origin/trunk"
+    squash = "rebase -i origin/main"
     rebasePreferMine = rebase -XTheirs
     mark = "commit --allow-empty -m 'Rebase Marker'"
 
@@ -117,3 +118,10 @@
 	insteadOf = https://gitlab-master.nvidia.com
 [pull]
 	ff = only
+[branch]
+    # by default have branches ordered from most recent to least instead of alpha
+    sort = -committerdate
+
+[tag]
+    # by default have tags sorted in semver order
+    sort = v:refname
