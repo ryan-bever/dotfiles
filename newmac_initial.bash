@@ -29,7 +29,7 @@ brew install font-hack-nerd-font
 
 
 brew install zsh
-# brew install zsh zsh-completions
+brew install starship
 
 
 # python
