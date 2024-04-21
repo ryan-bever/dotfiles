@@ -54,6 +54,8 @@ brew install wget
 brew install speedtest-cli
 brew install rectangle
 
+# https://github.com/atuinsh/atuin
+bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)
 
 
 # go and k8s and aws

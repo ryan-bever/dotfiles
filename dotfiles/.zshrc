@@ -89,3 +89,5 @@ fi
 
 # Start starship prompt
 eval "$(starship init zsh)"
+
+eval "$(atuin init zsh)"
