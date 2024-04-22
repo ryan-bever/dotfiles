@@ -54,7 +54,8 @@ compinit
 # plug "zsh-users/zsh-autosuggestions"
 # plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
-
+plug "fdellwing/zsh-bat"
+plug "agkozak/zsh-z"
 
 
 # Preferred editor for local and remote sessions
