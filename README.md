@@ -6,7 +6,7 @@ The install process is idempotent and can be executed again without problem.
 
 ~~~
 cd
-git clone git@github.com:beverku/dotfiles.git .dotfiles
+git clone git@github.com:ryan-bever/dotfiles.git .dotfiles
 .dotfiles/install.sh
 ~~~
 
@@ -29,7 +29,7 @@ Install git by typing git in the terminal and installing the developer command l
 ~~~
 caffeinate
 cd
-git clone git@github.com:beverku/dotfiles.git .dotfiles
+git clone git@github.com:ryan-bever/dotfiles.git .dotfiles
 # See dotfiles-local README.md for linking local files first
 
 .dotfiles/newmac_initial.bash

@@ -33,8 +33,8 @@ brew install starship
 
 
 # python
-brew install pyenv
-brew install pyenv-virtualenv
+# brew install pyenv
+# brew install pyenv-virtualenv
 
 
 

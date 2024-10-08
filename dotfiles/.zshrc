@@ -88,6 +88,9 @@ if [ -f ~/.zshrc.completions ]; then
     source ~/.zshrc.completions
 fi
 
+# Set XDG_CONFIG_HOME for applications that support it
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Start starship prompt
 eval "$(starship init zsh)"
 
