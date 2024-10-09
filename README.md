@@ -37,3 +37,5 @@ git clone git@github.com:ryan-bever/dotfiles.git .dotfiles
 
 Set iterm and terminal to use Hack Nerd Font Mono
 ~~~
+
+Download and install Visual Studio Code

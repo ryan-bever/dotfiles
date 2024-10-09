@@ -52,7 +52,7 @@ brew install sshrc
 brew install meld
 brew install wget
 brew install speedtest-cli
-brew install rectangle
+# brew install rectangle
 brew install bat
 
 # https://github.com/atuinsh/atuin
