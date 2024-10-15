@@ -1,5 +1,5 @@
 # Add path to my bin 
-export PATH="${HOME}/bin:${HOME}/git/:$PATH"
+export PATH="${HOME}/bin:${HOME}/go/bin:${HOME}/git/:$PATH"
 
 # local env
 if [ -f ~/.zshrc.pathrc.local ]; then

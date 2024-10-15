@@ -39,24 +39,32 @@ brew install starship
 
 
 # utils
+brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
 brew install scroll-reverser
 brew install the_silver_searcher
 brew install diffmerge
 brew install macvim
 brew install watch
 brew install fswatch
+brew install tree
 brew install telnet
 brew install jq
-brew install python-yq
+brew install yq
 brew install sshrc
 brew install meld
 brew install wget
 brew install speedtest-cli
 # brew install rectangle
-brew install bat
+brew install bato
+brew install mise
+brew install shellcheck
+# brew install vault
+brew install direnv
 
 # https://github.com/atuinsh/atuin
-bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)
+# bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)
+brew install atuin
+
 
 
 # go and k8s and aws
@@ -64,7 +72,8 @@ brew install go
 brew install kubectl
 brew install awscli
 
-
+# Installs to ~/go/bin/dlv
+go install github.com/go-delve/delve/cmd/dlv@latest
 # Enabel developer mode so goland debugger doesn't ask for password
 # See:  https://stackoverflow.com/questions/19626856/alertdeveloper-tools-access-needs-to-take-control-of-another-process-for-debugg
 DevToolsSecurity -enable

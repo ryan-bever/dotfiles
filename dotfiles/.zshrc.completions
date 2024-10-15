@@ -11,3 +11,6 @@ if [ -f ~/.zshrc.completions.local ]; then
     source ~/.zshrc.completions.local
 fi
 
+fpath=(~/.zsh/completions $fpath)
+# autoload -U compinit
+compinit

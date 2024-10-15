@@ -39,3 +39,5 @@ Set iterm and terminal to use Hack Nerd Font Mono
 ~~~
 
 Download and install Visual Studio Code
+**When signing into settings sync. Make sure to sign in to Microsoft nv account, not github.**
+Github can still be signed into, afterwards, to enable co-pilot.
