@@ -46,9 +46,8 @@ unsetopt MENU_COMPLETE
 # see: https://unix.stackexchange.com/questions/2179/rebuild-auto-complete-index-or-whatever-its-called-and-binaries-in-path-cach
 zstyle ":completion:*:commands" rehash 1
 
-# Load and initialise completion system
+# Load completion system (but don't initialize yet - do it at the end after all completions are loaded)
 autoload -Uz compinit
-compinit
 
 
 # 

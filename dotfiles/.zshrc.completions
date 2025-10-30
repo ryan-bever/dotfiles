@@ -4,7 +4,14 @@
 # eval "`bin/cloud-machinery-api completion zsh`"
 #
 
-source <(kubectl completion zsh)
+# Lazy load kubectl completion - only generate when kubectl is first used
+# This saves significant startup time
+kubectl() {
+  if ! type __start_kubectl >/dev/null 2>&1; then
+    source <(command kubectl completion zsh)
+  fi
+  command kubectl "$@"
+}
 
 # local env
 if [ -f ~/.zshrc.completions.local ]; then
@@ -12,5 +19,12 @@ if [ -f ~/.zshrc.completions.local ]; then
 fi
 
 fpath=(~/.zsh/completions $fpath)
-# autoload -U compinit
-compinit
+
+# Initialize completion system with optimization
+# Only rebuild completion dump once per day for better performance
+# Use -C flag to skip security checks (safe for single-user systems)
+if [[ -n ${ZSH_COMPDUMP}(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi

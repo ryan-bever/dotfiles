@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+# Benchmark shell startup time
+# Usage: benchmark-shell [iterations]
+
+iterations=${1:-10}
+total=0
+
+echo "Running $iterations shell startup iterations..."
+echo ""
+
+for i in {1..$iterations}; do
+  time=$( { time zsh -i -c exit } 2>&1 | grep 'total' | awk '{print $3}' )
+  echo "Iteration $i: $time"
+done
+
+echo ""
+echo "To profile startup in detail, run:"
+echo "  zsh -i -c 'zprof' (requires 'zmodload zsh/zprof' at top of .zshrc)"
+echo ""
+echo "To see what's taking time, add this to the TOP of your ~/.zshrc:"
+echo "  zmodload zsh/zprof"
+echo "Then run: zsh -i -c zprof"
+
