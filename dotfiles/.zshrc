@@ -1,3 +1,10 @@
+# 11/14/2024 - ulimit -a showing 256 file descriptors and lima/k is unable to start
+ulimit -n 1048576
+ulimit -u 6000
+
+# 6/9/25 - NV Speed up - https://nvidia.slack.com/archives/C883BCR2R/p1749218751568489
+ZSH_COMPDUMP="/tmp/.zcompdump-${USER}-$(hostname)-${ZSH_VERSION}"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Source in my other rc dotfiles that is shared with bash and zsh
@@ -96,3 +103,11 @@ eval "$(starship init zsh)"
 
 eval "$(atuin init zsh)"
 . "$HOME/.atuin/bin/env"
+
+eval "$(direnv hook zsh)"
+
+  if [ -f "/Users/rbever/dev/nvcloud/dgxcc/tools/scripts/functions/dgxcc-hooks.sh" ]; then
+    source "/Users/rbever/dev/nvcloud/dgxcc/tools/scripts/functions/dgxcc-hooks.sh"
+  else
+    echo 'dgxcc-hooks script not found at /Users/rbever/dev/nvcloud/dgxcc/tools/scripts/functions/dgxcc-hooks.sh'
+  fi

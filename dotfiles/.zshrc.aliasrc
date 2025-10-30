@@ -22,7 +22,7 @@ alias gaf="git commit --amend --no-edit -a --no-verify && git push --force"
 
 # grep and ag
 alias egrep='egrep --color'
-alias grep='egrep'
+alias grep='grep --color'
 
 alias agi='ag --ignore-case'
 alias ags='ag --case-sensitive' # --smart-case is the default

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Check if at least one argument is provided
+if [ $# -lt 1 ]; then
+  echo "Usage: $0 <command> [args...]"
+  exit 1
+fi
+
+command="$@"
+
+success_count=0
+
+# Run the command indefinitely until it fails
+while true; do
+  $command
+  if [ $? -ne 0 ]; then
+    echo "Command failed"
+    break
+  fi
+  success_count=$((success_count + 1))
+  echo "[$(date)] Command succeeded $success_count times"
+done

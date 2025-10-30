@@ -121,23 +121,23 @@ disabled = false
 style = "fg:color_rseg_k8s_fg bg:color_rseg_bg"
 format = '[$symbol($context/$namespace)]($style)[  ](fg:color_rseq_sep_fg bg:color_rseg_bg)'
 
-[[kubernetes.contexts]]
-context_pattern = "(?P<cluster>[\\w-]+)-dev"
-context_alias = "$cluster-dev"
-# style = "green"
-symbol = "🟢 "
+# [[kubernetes.contexts]]
+# context_pattern = "(?P<cluster>[\\w-]+)-dev"
+# context_alias = "$cluster-dev"
+# # style = "green"
+# symbol = "🟢 "
 
-[[kubernetes.contexts]]
-context_pattern = "(?P<cluster>[\\w-]+)-stg"
-context_alias = "$cluster-stg"
-# style = "yellow"
-symbol = "🟡 "
+# [[kubernetes.contexts]]
+# context_pattern = "(?P<cluster>[\\w-]+)-stg"
+# context_alias = "$cluster-stg"
+# # style = "yellow"
+# symbol = "🟡 "
 
-[[kubernetes.contexts]]
-context_pattern = "(?P<cluster>[\\w-]+)-prod"
-context_alias = "$cluster-prod"
-# style = "fg:white bg:red blink"
-symbol = " 🚨🚨🚨 "
+# [[kubernetes.contexts]]
+# context_pattern = "(?P<cluster>[\\w-]+)-prod"
+# context_alias = "$cluster-prod"
+# # style = "fg:white bg:red blink"
+# symbol = " 🚨🚨🚨 "
 
 [time]
 disabled = false
