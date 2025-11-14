@@ -46,8 +46,12 @@ unsetopt MENU_COMPLETE
 # see: https://unix.stackexchange.com/questions/2179/rebuild-auto-complete-index-or-whatever-its-called-and-binaries-in-path-cach
 zstyle ":completion:*:commands" rehash 1
 
-# Load completion system (but don't initialize yet - do it at the end after all completions are loaded)
+# Add custom completions directory to fpath before compinit
+fpath=(~/.zsh/completions $fpath)
+
+# Load and initialize completion system early so compdef works in sourced files
 autoload -Uz compinit
+compinit -C
 
 
 # 
